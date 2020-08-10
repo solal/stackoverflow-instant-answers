@@ -1,0 +1,48 @@
+{
+  "manifest_version": 2,
+  "name": "Stackoverflow Instant Answers",
+  "version": "0.1",
+  "icons": {
+    "32": "imgs/icons/icon_32.png",
+    "64": "imgs/icons/icon_64.png",
+    "128": "imgs/icons/icon_128.png",
+    "256": "imgs/icons/icon_256.png",
+    "512": "imgs/icons/icon_512.png"
+  },
+  "background": {
+    "scripts": [
+      "src/utils/gateway.js",
+      "src/utils/app-settings.js",
+      "libs/jquery-2.2.4.min.js",
+      "src/utils/uuid.js",
+      "src/utils/install.js",
+      "src/background.js"
+    ]
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://google.com/*",
+        "http://google.com/*",
+        "https://www.google.com/*",
+        "http://www.google.com/*"
+      ],
+      "css": ["styles/styles.css"],
+      "js": [
+        "src/utils/gateway.js",
+        "src/utils/app-settings.js",
+        "libs/jquery-2.2.4.min.js",
+        "src/utils/uuid.js",
+        "src/utils/search-page.js",
+        "libs/highlight.js",
+        "src/base.js"
+      ]
+    }
+  ],
+  "permissions": [
+    "storage",
+    "http://127.0.0.1:5000/*",
+    "https://api.stackexchange.com/*",
+    "https://solalfitoussi.com/*"
+  ]
+}
