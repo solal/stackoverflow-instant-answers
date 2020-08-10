@@ -7,6 +7,7 @@ Top Stackoverflow answers, right from the Google search results
 The Stackoverflow Instant Answers Extension allows you to get the top answer of Stackoverflow results directly on your Google searches. No need to click, wait for the page to load and scroll the to correct answer.
 With the Stackoverflow Instant Answers Extension you get what you need instantly.
 
+![test](https://github.com/solal/stackoverflow-instant-answers/blob/master/imgs/misc/presentation.gif)
 
 ### Project structure
 - `/` contains the manifest, read me and directories
