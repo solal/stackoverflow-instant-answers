@@ -18,3 +18,11 @@ With the Stackoverflow Instant Answers Extension you get what you need instantly
 - `/src` contains the extension's application logic
   - `/src/utils` contains the extension's own utilities
 - `/styles` contains the extension's styles
+
+
+### Styles
+Install Node Sass and run the compile script at the root of the project
+```
+npm install -g node-sass
+npm run scss
+```

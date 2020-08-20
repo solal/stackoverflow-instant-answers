@@ -1,0 +1,20 @@
+{
+  "name": "stackoverflow-instant-answers",
+  "version": "1.0.0",
+  "description": "Top Stackoverflow answers, right from the Google search results",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "scss": "node-sass -w styles/scss/ -o styles/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/solal/stackoverflow-instant-answers.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/solal/stackoverflow-instant-answers/issues"
+  },
+  "homepage": "https://github.com/solal/stackoverflow-instant-answers#readme"
+}

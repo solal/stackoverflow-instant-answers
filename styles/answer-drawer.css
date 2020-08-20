@@ -1,0 +1,32 @@
+.answer-drawer {
+  width: 640px;
+  margin: 10px 0;
+  padding: 10px 10px 10px 0;
+  background-color: #1f2227;
+  border-radius: 5px;
+  animation: trophy 0.45s 1 forwards; }
+  .answer-drawer h1, .answer-drawer h2, .answer-drawer h3, .answer-drawer h4, .answer-drawer h5, .answer-drawer h6, .answer-drawer p, .answer-drawer ul, .answer-drawer ol {
+    color: white;
+    white-space: normal;
+    width: inherit;
+    margin: 5px 0;
+    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; }
+  .answer-drawer ul, .answer-drawer ol {
+    margin-left: 10px; }
+  .answer-drawer a, .answer-drawer a:visited, .answer-drawer a:hover {
+    color: #00a2fa !important; }
+  .answer-drawer pre {
+    border-radius: 3px; }
+  .answer-drawer img {
+    width: 98%;
+    margin: 10px 1%; }
+  .answer-drawer .answer-btn {
+    margin: 5px 10px; }
+  .answer-drawer .drawer-clear {
+    clear: both; }
+  .answer-drawer .drawer-column {
+    width: 100px;
+    float: left; }
+  .answer-drawer .drawer-content {
+    width: calc(100% - 100px);
+    float: left; }

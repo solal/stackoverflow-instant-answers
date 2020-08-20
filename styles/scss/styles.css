@@ -1,0 +1,244 @@
+@import "answer-drawer";
+
+.score {
+  text-align: center;
+  color: white;
+  margin-top: 10px;
+  font-size: 22px;
+  font-family: "helvetica";
+  animation: trophy 0.5s 1 forwards;
+}
+
+/*
+Code formatting
+*/
+.hljs{display:block;overflow-x:auto;padding:.5em;color:#abb2bf;background:#282c34}.hljs-comment,.hljs-quote{color:#5c6370;font-style:italic}.hljs-doctag,.hljs-formula,.hljs-keyword{color:#c678dd}.hljs-deletion,.hljs-name,.hljs-section,.hljs-selector-tag,.hljs-subst{color:#e06c75}.hljs-literal{color:#56b6c2}.hljs-addition,.hljs-attribute,.hljs-meta-string,.hljs-regexp,.hljs-string{color:#98c379}.hljs-built_in,.hljs-class .hljs-title{color:#e6c07b}.hljs-attr,.hljs-number,.hljs-selector-attr,.hljs-selector-class,.hljs-selector-pseudo,.hljs-template-variable,.hljs-type,.hljs-variable{color:#d19a66}.hljs-bullet,.hljs-link,.hljs-meta,.hljs-selector-id,.hljs-symbol,.hljs-title{color:#61aeee}.hljs-emphasis{font-style:italic}.hljs-strong{font-weight:700}.hljs-link{text-decoration:underline}
+
+@keyframes trophy {
+    0% {
+      transform: translateY(500px);
+      opacity: 0;
+    }
+    35% {
+      opacity: 0;
+    }
+    100% {
+      transform: translateY(0px);
+      opacity: 1;
+    }
+}
+@keyframes fly--up {
+  0% {
+    transform: translateY(10px);
+    opacity: 0;
+  }
+  60% {
+    opacity: 1;
+  }
+  80% {
+    transform: translateY(-100px);
+  }
+  100% {
+    transform: translateY(-75px);
+    opacity: 0;
+  }
+}
+@keyframes fly--down {
+  0% {
+    transform: translateY(-10px);
+    opacity: 0;
+  }
+  60% {
+    opacity: 1;
+  }
+  80% {
+    transform: translateY(100px);
+  }
+  100% {
+    transform: translateY(75px);
+    opacity: 0;
+  }
+}
+@keyframes fly--left {
+  0% {
+    transform: translateX(10px);
+    opacity: 0;
+  }
+  60% {
+    opacity: 1;
+  }
+  80% {
+    transform: translateX(-175px);
+  }
+  100% {
+    transform: translateX(-180px);
+    opacity: 0;
+  }
+}
+@keyframes fly--right {
+  0% {
+    transform: translateX(-10px);
+    opacity: 0;
+  }
+  60% {
+    opacity: 1;
+  }
+  80% {
+    transform: translateX(175px);
+  }
+  100% {
+    transform: translateX(180px);
+    opacity: 0;
+  }
+}
+@keyframes fly--up--left {
+  0% {
+    transform: rotate(135deg) translate(0vw, 0vw);
+    opacity: 0;
+  }
+  60% {
+    opacity: 1;
+  }
+  100% {
+    transform: rotate(135deg) translate(-15px, 100px);
+    opacity: 0;
+  }
+}
+@keyframes fly--up--right {
+  0% {
+    transform: rotate(45deg);
+    opacity: 0;
+  }
+  60% {
+    opacity: 1;
+  }
+  100% {
+    transform: rotate(45deg) translate(-15px, -100px);
+    opacity: 0;
+  }
+}
+@keyframes fly--down--left {
+  0% {
+    transform: rotate(45deg) translate(0vw, 0vw);
+    opacity: 0;
+  }
+  60% {
+    opacity: 1;
+  }
+  100% {
+    transform: rotate(45deg) translate(-15px, 100px);
+    opacity: 0;
+  }
+}
+@keyframes fly--down--right {
+  0% {
+    transform: rotate(135deg) translate(0vw, 0vw);
+    opacity: 0;
+  }
+  60% {
+    opacity: 1;
+  }
+  100% {
+    transform: rotate(135deg) translate(0vw, -100px);
+    opacity: 0;
+  }
+}
+
+body { background-color: transparent; }
+
+.container {
+  position: relative;
+  width: 100%;
+  height: 100px;
+}
+
+.trophy {
+  z-index: 1;
+  background-color: #fff;
+  height: 100%;
+  width: 100%;
+  border-radius: 100%;
+  animation: trophy 0.5s 1 forwards;
+}
+
+.action {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 40px;
+  width: 40px;
+  max-width: 60px;
+  max-height: 60px;
+}
+
+.action .confetti--purple, .action .confetti {
+  z-index: -1;
+  position: absolute;
+  height: 25px;
+  width: 5px;
+  border-radius: 5px;
+  animation-fill-mode: forwards;
+  animation-duration: 0.75s;
+  animation-iteration-count: 1;
+  transform-origin: center middle;
+  opacity: 0;
+}
+
+.action .confetti {
+  top: 0;
+  left: calc(50% - 5px);
+  background-color: #ff6200;
+  animation-name: fly--up;
+  animation-delay: 0.35s;
+}
+
+.action .confetti.two {
+  top: auto;
+  bottom: 0;
+  animation-name: fly--down;
+}
+
+.action .confetti.three, .action .confetti.four {
+  top: calc(50% - 5px);
+  left: calc(50% - 13px);
+  height: 5px;
+  width: 25px;
+  animation-name: fly--left;
+}
+
+.action .confetti.four {
+  animation-name: fly--right;
+}
+
+.action .confetti--purple {
+  background-color: #6200EA;
+  animation-name: fly--up--left;
+  transform: rotate(135deg);
+  animation-delay: 0.5s;
+  left: 20%;
+  top: 20%;
+}
+
+.action .confetti--purple.two {
+  animation-name: fly--up--right;
+  left: auto;
+  right: 20%;
+  transform: rotate(45deg);
+}
+
+.action .confetti--purple.three {
+  top: auto;
+  bottom: 20%;
+  transform: rotate(45deg);
+  animation-name: fly--down--left;
+}
+
+.action .confetti--purple.four {
+  top: auto;
+  bottom: 20%;
+  left: auto;
+  right: 20%;
+  transform: rotate(135deg);
+  animation-name: fly--down--right;
+}
