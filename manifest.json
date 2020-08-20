@@ -35,6 +35,7 @@
         "src/utils/uuid.js",
         "src/utils/search-page.js",
         "libs/highlight.js",
+        "src/utils/answer-drawer.js",
         "src/base.js"
       ]
     }

@@ -1,10 +1,20 @@
 .answer-drawer {
   width: 640px;
   margin: 10px 0;
-  padding: 10px 10px 10px 0;
+  padding: 10px 10px 10px 10px;
   background-color: #1f2227;
   border-radius: 5px;
   animation: trophy 0.45s 1 forwards; }
+
+@keyframes trophy {
+  0% {
+    transform: translateY(500px);
+    opacity: 0; }
+  35% {
+    opacity: 0; }
+  100% {
+    transform: translateY(0px);
+    opacity: 1; } }
   .answer-drawer h1, .answer-drawer h2, .answer-drawer h3, .answer-drawer h4, .answer-drawer h5, .answer-drawer h6, .answer-drawer p, .answer-drawer ul, .answer-drawer ol {
     color: white;
     white-space: normal;
@@ -20,13 +30,3 @@
   .answer-drawer img {
     width: 98%;
     margin: 10px 1%; }
-  .answer-drawer .answer-btn {
-    margin: 5px 10px; }
-  .answer-drawer .drawer-clear {
-    clear: both; }
-  .answer-drawer .drawer-column {
-    width: 100px;
-    float: left; }
-  .answer-drawer .drawer-content {
-    width: calc(100% - 100px);
-    float: left; }

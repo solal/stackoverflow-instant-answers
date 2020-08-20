@@ -1,0 +1,23 @@
+.info-bar {
+  height: 50px;
+  min-width: 200px;
+  margin-top: 20px;
+  background: rgb(40, 44, 52);
+
+  img {
+    width: 25px;
+    margin: 2px 5px;
+    float: left;
+  }
+
+  h1 {
+    font-size: 32px;
+    border-right: 1px solid #a9a9a9;
+    text-align: center;
+  }
+
+  h1, h4 {
+    margin: 0;
+    line-height: initial;
+  }
+}

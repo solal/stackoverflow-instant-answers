@@ -106,9 +106,8 @@ $('.answer-btn').click(function() {
     let answer       = mappedQuestionsWithAnswers[$(this).attr('st-id')];
 
     if (drawnerShown == 'no') {
-        let drawer        = document.createElement('div');
-        drawer.className  = 'answer-drawer';
-        addAnswerContent($(this), drawer, answer);
+        let drawer = new AnswerDrawer($(this), answer)
+        drawer.show()
         newbtnClickedEvent( $(this).attr('link') )
     } else {
         let drawer = $(this).parent().find('.answer-drawer');
@@ -144,29 +143,6 @@ function registerNewBtnClicked(payload) {
 }
 
 
-function addAnswerContent(context, drawer, answer) {
-    let drawerColumn        = document.createElement('div');
-    let drawerContent       = document.createElement('div');
-    let drawerClear         = document.createElement('div');
-    drawerContent.innerHTML = answer.body;
-    drawerColumn.innerHTML  = getScoreMarkup(answer.score);
-
-    drawerColumn.className  = 'drawer-column';
-    drawerContent.className = 'drawer-content';
-    drawerClear.className   = 'drawer-clear';
-
-    drawer.appendChild(drawerColumn);
-    drawer.appendChild(drawerContent);
-    drawer.appendChild(drawerClear);
-    context.parent().append(drawer);
-    context.attr('drawner-shown', 'yes');
-
-    document.querySelectorAll('pre').forEach(block => {
-        hljs.highlightBlock(block);
-    });
-}
-
-
 function isValidDomain(href) {
     const url = new URL('', href)
     return url.hostname === 'stackoverflow.com' ? true : false
@@ -176,27 +152,4 @@ function isValidDomain(href) {
 function extractStackoverflowParentId(url) {
     const pathEls = url.pathname.split('/')
     return pathEls[2]
-}
-
-
-function getScoreMarkup(score) {
-    return `
-    <div class="container">
-        <div class="action">
-            <div class="trophy">
-                <svg fill="#FFD600" width="100%" height="100%" viewBox="0 0 24 24">
-                    <path d="M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22A10,10 0 0,1 2,12A10,10 0 0,1 12,2M11,16.5L18,9.5L16.59,8.09L11,13.67L7.91,10.59L6.5,12L11,16.5Z"></path>
-                </svg>
-            </div>
-            <div class="score">${score}</div>
-            <div class="confetti"></div>
-            <div class="confetti two"></div>
-            <div class="confetti three"></div>
-            <div class="confetti four"></div>
-            <div class="confetti--purple"></div>
-            <div class="confetti--purple two"></div>
-            <div class="confetti--purple three"></div>
-            <div class="confetti--purple four"></div>
-        </div>
-    </div>`
 }
