@@ -1,15 +1,12 @@
 class AnswerDrawer {
-    // todo
+    // TODO:
     // create hide method
-    // create method to display markup of info bar
 
     constructor(context, answer) {
         this._context        = context
         this._answer         = answer
         this._drawerFragment = new DocumentFragment()
         this._generate_elements()
-
-        console.log(answer)
     }
 
 
@@ -39,7 +36,7 @@ class AnswerDrawer {
                 <tbody>
                     <tr>
                         <td>
-                            <h1>${answer.score}</h1>
+                            <h1>${this._formatNumber(answer.score)}</h1>
                         </td>
 
                         <td>
@@ -50,7 +47,7 @@ class AnswerDrawer {
                                 <h4>
                                     <a href="${answer.owner.link}" target="_blank">${answer.owner.display_name}</a>
                                 </h4>
-                                <h4>${answer.owner.reputation}</h4>
+                                <h4>${this._formatNumber(answer.owner.reputation)}</h4>
                             </div>
                         </td>
                     </tr>
@@ -63,5 +60,20 @@ class AnswerDrawer {
     show() {
         this._context.parent().append(this._drawerFragment)
         this._context.attr('drawner-shown', 'yes')
+    }
+
+
+    _formatNumber(value) {
+        if (value < 10000)
+            return value
+
+        let suffixes = ['', 'K', 'M', 'B', 'T'],
+             suffixN = Math.floor(('' + value).length / 4),
+          shortValue = parseFloat((suffixN != 0 ? (value / Math.pow(1000, suffixN)) : value).toPrecision(6))
+
+        if (shortValue % 1 != 0)
+            shortValue = shortValue.toFixed(1)
+
+        return shortValue + suffixes[suffixN]
     }
 }

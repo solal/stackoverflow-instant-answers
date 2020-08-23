@@ -13,35 +13,33 @@ parseURLs(ids => {
     let url = SETTINGS.stackoverflowAPIURL + '/2.2/questions/'+ids.join(';')+'/answers?order=desc&sort=activity&site=stackoverflow&filter=!b6Aub*uCt1FjWD'
 
     gateway.get(url, response => {
-        let questions = mapQuestions(response.items)
+        mappedQuestionsWithAnswers = mapQuestionsFromAnswers(response.items)
 
         $('.answer-btn').each(function(k, v) {
-            let questionId = $(v).attr('st-id'),
-                  question = questions[questionId]
+            let question,
+                questionId = $(v).attr('st-id')
+
+            if ( mappedQuestionsWithAnswers.hasOwnProperty([questionId][0]) )
+                question = mappedQuestionsWithAnswers[questionId][0]
 
             questionId !== undefined && question !== undefined ?
                 $(v).text("Instant Answer | "+question.score+" pts") : $(this).remove()
         })
-
-        mappedQuestionsWithAnswers = questions
     })
 })
 
 
-function mapQuestions(answers) {
+function mapQuestionsFromAnswers(answers) {
+    // TODO: might want to optimize function using a different data structure
     let questions = {}
 
     for (const answer of answers) {
-        if ( !questions.hasOwnProperty(answer.question_id) ) {
-            questions[answer.question_id] = answer
-        } else {
-            let currentAnswer = questions[answer.question_id]
-            if ( currentAnswer.score < answer.score ) {
-                questions[answer.question_id] = answer
-            } else if ( currentAnswer.score === answer.score && answer.is_accepted ) {
-                questions[answer.question_id] = answer
-            }
-        }
+        ( !questions.hasOwnProperty(answer.question_id) ) ?
+            questions[answer.question_id] = [answer] : questions[answer.question_id].push(answer)
+    }
+
+    for (const questionId of Object.keys(questions)) {
+        questions[questionId].sort((a, b) => b.score - a.score)
     }
 
     return questions
@@ -103,7 +101,8 @@ function registerNewSearchQuery(payload) {
 
 $('.answer-btn').click(function() {
     let drawnerShown = $(this).attr('drawner-shown');
-    let answer       = mappedQuestionsWithAnswers[$(this).attr('st-id')];
+    let answers      = mappedQuestionsWithAnswers[$(this).attr('st-id')];
+    let answer       = answers[0]
 
     if (drawnerShown == 'no') {
         let drawer = new AnswerDrawer($(this), answer)
