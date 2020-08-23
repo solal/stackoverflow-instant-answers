@@ -2,9 +2,10 @@ class AnswerDrawer {
     // TODO:
     // create hide method
 
-    constructor(context, answer) {
+    constructor(context, answers) {
         this._context        = context
-        this._answer         = answer
+        this._answers        = answers
+        this._answer         = answers[0]
         this._drawerFragment = new DocumentFragment()
         this._generate_elements()
     }
@@ -31,14 +32,14 @@ class AnswerDrawer {
 
 
     _createInfoBar(answer) {
+        for (const a of this._answers) {
+            console.log(a)
+        }
+
         return document.createRange().createContextualFragment(`
             <table class="info-bar">
                 <tbody>
                     <tr>
-                        <td>
-                            <h1>${this._formatNumber(answer.score)}</h1>
-                        </td>
-
                         <td>
                             <div>
                               <img src="${answer.owner.profile_image}">
@@ -51,9 +52,21 @@ class AnswerDrawer {
                             </div>
                         </td>
                     </tr>
+                    <tr>
+                        <td>
+                            <h5>${this._toReadableDate(answer.last_edit_date)}</h5>
+                        </td>
+                    <tr>
                 </tbody>
             </table>
         `)
+    }
+
+    _toReadableDate(timestamp) {
+        let options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' },
+               date = new Date(timestamp * 1000)
+
+        return date.toLocaleDateString("en-US", options)
     }
 
 

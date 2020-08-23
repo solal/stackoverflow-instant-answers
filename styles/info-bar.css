@@ -11,6 +11,6 @@
     font-size: 32px;
     border-right: 1px solid #a9a9a9;
     text-align: center; }
-  .info-bar h1, .info-bar h4 {
+  .info-bar h1, .info-bar h2, .info-bar h4, .info-bar h3, .info-bar h5, .info-bar h6 {
     margin: 0;
     line-height: initial; }

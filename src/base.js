@@ -102,16 +102,15 @@ function registerNewSearchQuery(payload) {
 $('.answer-btn').click(function() {
     let drawnerShown = $(this).attr('drawner-shown');
     let answers      = mappedQuestionsWithAnswers[$(this).attr('st-id')];
-    let answer       = answers[0]
 
     if (drawnerShown == 'no') {
-        let drawer = new AnswerDrawer($(this), answer)
+        let drawer = new AnswerDrawer($(this), answers)
         drawer.show()
         newbtnClickedEvent( $(this).attr('link') )
     } else {
         let drawer = $(this).parent().find('.answer-drawer');
         $(this).attr('drawner-shown', 'no');
-        $(this).text("Instant Answer | "+answer.score+" pts | Seen");
+        $(this).text("Instant Answer | "+answers[0].score+" pts | Seen");
         drawer.remove();
     }
 });
