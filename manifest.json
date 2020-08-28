@@ -13,7 +13,6 @@
     "scripts": [
       "src/utils/gateway.js",
       "src/utils/app-settings.js",
-      "libs/jquery-2.2.4.min.js",
       "src/utils/uuid.js",
       "src/utils/install.js",
       "src/background.js"
@@ -31,7 +30,6 @@
       "js": [
         "src/utils/gateway.js",
         "src/utils/app-settings.js",
-        "libs/jquery-2.2.4.min.js",
         "src/utils/uuid.js",
         "src/utils/search-page.js",
         "libs/highlight.js",
