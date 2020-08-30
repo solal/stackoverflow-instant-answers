@@ -15,12 +15,12 @@ parseURLs(ids => {
     gateway.get(url, response => {
         let questions = mapQuestions(response.items)
 
-        $('.answer-btn').each(function(k, v) {
-            let questionId = $(v).attr('st-id'),
+        document.querySelectorAll('.answer-btn').forEach(function(v) {
+            let questionId = v.getAttribute('st-id'),
                   question = questions[questionId]
 
             questionId !== undefined && question !== undefined ?
-                $(v).text("Instant Answer | "+question.score+" pts") : $(this).remove()
+                v.innerText = ("Instant Answer | "+question.score+" pts") : v.remove()
         })
 
         mappedQuestionsWithAnswers = questions
@@ -49,7 +49,7 @@ function mapQuestions(answers) {
 
 
 function parseURLs(handler) {
-    let hrefs = $("#center_col a[href^='http']")
+    let hrefs = document.querySelectorAll("#center_col a[href^='http']")
     let ids   = []
     let hasOneValidLInk = false
 
@@ -60,7 +60,7 @@ function parseURLs(handler) {
             let questionId = extractStackoverflowParentId(url)
             ids.push(questionId)
 
-            let parent = href.parentNode    
+            let parent = href.parentNode
             let btn = document.createElement("button")
             btn.innerHTML = 'Instant Answer'
             btn.className = 'answer-btn'
@@ -101,20 +101,22 @@ function registerNewSearchQuery(payload) {
 }
 
 
-$('.answer-btn').click(function() {
-    let drawnerShown = $(this).attr('drawner-shown');
-    let answer       = mappedQuestionsWithAnswers[$(this).attr('st-id')];
+document.querySelectorAll('.answer-btn').forEach(function(button) {
+    button.addEventListener('click', function(e) {
+        let drawnerShown = e.currentTarget.getAttribute('drawner-shown');
+        let answer       = mappedQuestionsWithAnswers[e.currentTarget.getAttribute('st-id')];
 
-    if (drawnerShown == 'no') {
-        let drawer = new AnswerDrawer($(this), answer)
-        drawer.show()
-        newbtnClickedEvent( $(this).attr('link') )
-    } else {
-        let drawer = $(this).parent().find('.answer-drawer');
-        $(this).attr('drawner-shown', 'no');
-        $(this).text("Instant Answer | "+answer.score+" pts | Seen");
-        drawer.remove();
-    }
+        if (drawnerShown == 'no') {
+            let drawer = new AnswerDrawer(e.currentTarget, answer)
+            drawer.show()
+            newbtnClickedEvent( e.currentTarget.getAttribute('link') )
+        } else {
+            let drawer = e.currentTarget.nextElementSibling;
+            e.currentTarget.setAttribute('drawner-shown', 'no');
+            e.currentTarget.innerText = "Instant Answer | "+answer.score+" pts | Seen";
+            drawer.remove();
+        }
+    })
 });
 
 

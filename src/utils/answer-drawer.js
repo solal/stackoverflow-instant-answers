@@ -61,7 +61,7 @@ class AnswerDrawer {
 
 
     show() {
-        this._context.parent().append(this._drawerFragment)
-        this._context.attr('drawner-shown', 'yes')
+        this._context.parentElement.append(this._drawerFragment)
+        this._context.setAttribute('drawner-shown', 'yes')
     }
 }
